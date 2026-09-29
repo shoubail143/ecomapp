@@ -8,6 +8,7 @@ import women from "../../assets/women.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
+import "aos/dist/aos.css";
 
 const Photos = [
   {
@@ -66,17 +67,38 @@ const Hero = () => {
               <div className="grid sm:grid-cols-2 gap-8 items-center">
                 {/* Text Content Section */}
                 <div className="flex flex-col gap-4">
-                  <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold">
+                  <h1
+                    data-aos="zoom-out"
+                    data-aos-duation="500"
+                    data-aos-once="true"
+                    className="text-5xl sm:text-6xl lg:text-7xl font-bold"
+                  >
                     {data.title}
                   </h1>
-                  <p className="text-sm">{data.description}</p>
-                  <button className="bg-gradient-to-r from-primary to-secondary hover:scale-105 text-white rounded-full w-max px-6 transition-all duration-200">
+                  <p
+                    data-aos="fade-up"
+                    data-aos-duration="500"
+                    data-aos-delay="100"
+                    className="text-sm"
+                  >
+                    {data.description}
+                  </p>
+                  <button
+                    data-aos="fade-up"
+                    data-aos-duration="500"
+                    data-aos-delay="300"
+                    className="bg-gradient-to-r from-primary to-secondary hover:scale-105 text-white rounded-full w-max px-6 transition-all duration-200"
+                  >
                     Order now
                   </button>
                 </div>
 
                 {/* Image Section */}
-                <div className="flex justify-center items-center">
+                <div
+                  data-aos="zoom-in"
+                  data-aos-once="true"
+                  className="flex justify-center items-center"
+                >
                   <img
                     src={data.img}
                     alt="woman"
