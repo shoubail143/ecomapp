@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 // 1. Import the star icon
 import { FaStar } from "react-icons/fa";
 
@@ -50,20 +50,41 @@ const Products = () => {
     <div className="container mx-auto px-4 py-10">
       {/* Headerrr*/}
       <div className="text-left mb-10">
-        <p data-aos="fade-up" className="text-bold text-orange-700">
+        <p
+          data-aos="fade-up"
+          data-aos-duration="500"
+          data-aos-once="true"
+          className="text-bold text-orange-700"
+        >
           Top Rated!
         </p>
-        <h1 data-aos="fade-up" className="font-bold text-3xl">
+        <h1
+          data-aos="fade-up"
+          data-aos-duration="500"
+          data-aos-delay="100"
+          data-aos-once="true"
+          className="font-bold text-3xl"
+        >
           Trending Products
         </h1>
-        <p data-aos="fade-up" className="text-gray-500 font-bold text-xl mt-2">
+        <p
+          data-aos="fade-up"
+          data-aos-duration="500"
+          data-aos-delay="200"
+          data-aos-once="true"
+          className="text-gray-500 font-bold text-xl mt-2"
+        >
           All your needs just a click away!!
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
-        {products.map((data) => (
+        {products.map((data, index) => (
           <div
             key={data.id}
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay={(index % 3) * 100}
+            data-aos-once="true"
             className="rounded-2xl relative duration-300 hover:scale-105 group max-w-[300px] w-full bg-gray-100 dark:bg-red-100 p-4 shadow-md"
           >
             <div>
@@ -96,6 +117,11 @@ const Products = () => {
               <p className="text-center text-orange-700 font-bold mt-1">
                 ${data.price}
               </p>
+              <div className="text-center">
+                <button className="rounded-md px-3 py-2 bg-gradient-to-r from-orange-200 to-secondary  ">
+                  Order Now
+                </button>
+              </div>
             </div>
           </div>
         ))}

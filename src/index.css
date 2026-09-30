@@ -17,3 +17,20 @@
     padding-inline: 3rem;
   }
 }
+
+div[style*="backgroundPosition"] {
+  position: relative;
+}
+
+.footer-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  z-index: 10;
+}
+
+.footer-content h1 {
+  font-size: 24px;
+  margin: 0;
+}

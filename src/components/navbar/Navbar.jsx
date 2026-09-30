@@ -1,4 +1,3 @@
-import React from "react";
 import logo from "../../assets/logo.png";
 import { FaSearch } from "react-icons/fa";
 import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
@@ -73,10 +72,7 @@ const Navbar = ({ isDark, onToggleTheme }) => {
             </div>
           </div>
           <div className="relative flex items-center">
-            <button
-              onClick={() => alert("Ordering not avail yet")}
-              className="bg-gradient-to-r from-primary to-secondary transition-all duration-300 text-white py-2 px-3 rounded-full flex items-center gap-2 group "
-            >
+            <button className="bg-gradient-to-r from-primary to-secondary transition-all duration-300 text-white py-2 px-3 rounded-full flex items-center gap-2 group ">
               <span className="group-hover:block hidden transition-all duration-300">
                 Order now
               </span>

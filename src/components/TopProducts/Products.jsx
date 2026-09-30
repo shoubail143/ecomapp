@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 
 const Top = () => {
@@ -29,23 +29,22 @@ const Top = () => {
 
   if (loading)
     return (
-      <div className="text-center py-10 font-bold text-white bg-gray-900 min-h-screen">
+      <div className="bg-white py-10 text-center font-bold text-gray-900 dark:bg-gray-950 dark:text-white">
         Loading top rated products...
       </div>
     );
   if (error)
     return (
-      <div className="text-center py-10 text-red-500 font-bold bg-gray-900 min-h-screen">
+      <div className="bg-white py-10 text-center font-bold text-red-600 dark:bg-gray-950 dark:text-red-400">
         Error: {error}
       </div>
     );
 
   return (
-    <div className="bg-gray-900 text-white py-16 min-h-screen">
+    <section className="bg-white py-10 text-gray-900 dark:bg-gray-950 dark:text-white">
       <div className="container mx-auto px-4">
-        {/* Header Section */}
         <div className="text-left mb-10">
-          <p data-aos="fade-up" className="text-bold text-orange-500">
+          <p data-aos="fade-up" className="font-bold text-primary">
             Top Rated!
           </p>
           <h1 data-aos="fade-up" className="font-bold text-3xl md:text-4xl">
@@ -53,18 +52,16 @@ const Top = () => {
           </h1>
           <p
             data-aos="fade-up"
-            className="text-gray-400 font-bold text-lg mt-2"
+            className="mt-2 text-lg font-bold text-gray-500 dark:text-gray-400"
           >
             All your needs just a click away!!
           </p>
         </div>
-
-        {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
           {products.map((data) => (
             <div
               key={data.id}
-              className="rounded-2xl relative duration-300 hover:scale-105 group max-w-[300px] w-full bg-gray-800 p-4 shadow-lg border border-gray-700"
+              className="group relative w-full max-w-[300px] rounded-2xl border border-gray-200 bg-gray-100 p-4 shadow-md duration-300 hover:scale-105 dark:border-gray-700 dark:bg-gray-800"
             >
               <div>
                 <img
@@ -80,28 +77,28 @@ const Top = () => {
                       className={
                         index < Math.round(data.rating)
                           ? "text-yellow-500"
-                          : "text-gray-600"
+                          : "text-gray-300 dark:text-gray-600"
                       }
                     />
                   ))}
-                  <span className="text-sm text-gray-400 ml-2">
+                  <span className="ml-2 text-sm text-gray-500 dark:text-gray-400">
                     ({data.rating})
                   </span>
                 </div>
 
                 {/* Product Details */}
-                <h2 className="text-center font-semibold mt-2 text-md truncate text-white">
+                <h2 className="mt-2 truncate text-center text-md font-semibold text-gray-900 dark:text-white">
                   {data.title}
                 </h2>
-                <p className="text-center text-orange-500 font-bold mt-1">
-                  (${`data.rating`})
+                <p className="mt-1 text-center font-bold text-primary">
+                  (${data.rating})
                 </p>
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
