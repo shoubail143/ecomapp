@@ -4,7 +4,7 @@ import {
   FaShoppingBag,
   FaTwitter,
 } from "react-icons/fa";
-import footerBanner from "../../assets/foologo.png";
+import footerBanner from "../../assets/Footerr.png";
 
 const FooterLinks = [
   {

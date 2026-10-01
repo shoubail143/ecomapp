@@ -1,10 +1,36 @@
 import { useState, useEffect } from "react";
-import { FaStar } from "react-icons/fa";
+import { FaCheck, FaStar } from "react-icons/fa";
+import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
 
-const Top = () => {
+const Top = ({ onAddToCart }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [addFeedback, setAddFeedback] = useState({
+    productId: null,
+    animation: 0,
+  });
+
+  useEffect(() => {
+    if (addFeedback.productId === null) return undefined;
+
+    const timeoutId = window.setTimeout(() => {
+      setAddFeedback((currentFeedback) => ({
+        ...currentFeedback,
+        productId: null,
+      }));
+    }, 700);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [addFeedback.animation, addFeedback.productId]);
+
+  const handleAddToCart = (product) => {
+    onAddToCart?.(product);
+    setAddFeedback((currentFeedback) => ({
+      productId: product.id,
+      animation: currentFeedback.animation + 1,
+    }));
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -41,7 +67,10 @@ const Top = () => {
     );
 
   return (
-    <section className="bg-white py-10 text-gray-900 dark:bg-gray-950 dark:text-white">
+    <section
+      id="top-rated"
+      className="bg-white py-10 text-gray-900 dark:bg-gray-950 dark:text-white"
+    >
       <div className="container mx-auto px-4">
         <div className="text-left mb-10">
           <p data-aos="fade-up" className="font-bold text-primary">
@@ -93,6 +122,31 @@ const Top = () => {
                 <p className="mt-1 text-center font-bold text-primary">
                   (${data.rating})
                 </p>
+                <div className="text-center">
+                  <button
+                    type="button"
+                    data-no-order-popup
+                    onClick={() => handleAddToCart(data)}
+                    aria-label={`${data.title} ${addFeedback.productId === data.id ? "added to cart" : "add to cart"}`}
+                    className={`add-to-cart-button inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-orange-200 to-secondary px-3 py-2 font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${addFeedback.productId === data.id ? "is-adding" : ""}`}
+                  >
+                    {addFeedback.productId === data.id ? (
+                      <FaCheck
+                        key={`added-${addFeedback.animation}`}
+                        aria-hidden="true"
+                        className="add-to-cart-icon"
+                      />
+                    ) : (
+                      <PiShoppingCartSimpleDuotone
+                        aria-hidden="true"
+                        className="add-to-cart-icon"
+                      />
+                    )}
+                    {addFeedback.productId === data.id
+                      ? "Added!"
+                      : "Add to Cart"}
+                  </button>
+                </div>
               </div>
             </div>
           ))}

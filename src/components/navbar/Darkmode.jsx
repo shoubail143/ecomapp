@@ -5,6 +5,7 @@ const Darkmode = ({ isDark, onToggle }) => {
   return (
     <button
       type="button"
+      data-no-order-popup
       onClick={onToggle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       title={`Switch to ${isDark ? "light" : "dark"} mode`}

@@ -3,6 +3,7 @@ import { FaShoppingBag, FaTimes } from "react-icons/fa";
 
 const Popup = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ const Popup = ({ isOpen, onClose }) => {
 
   const closePopup = () => {
     setEmail("");
+    setAddress("");
     setSubmitted(false);
     onClose();
   };
@@ -58,7 +60,7 @@ const Popup = ({ isOpen, onClose }) => {
         {submitted ? (
           <div className="mt-3" role="status">
             <p className="text-sm leading-6 text-gray-600 dark:text-gray-300">
-              {email} has been added to your order request.
+              {email} and {address} have been added to your order request.
             </p>
             <button
               type="button"
@@ -77,7 +79,7 @@ const Popup = ({ isOpen, onClose }) => {
             }}
           >
             <p className="mb-5 text-sm leading-6 text-gray-600 dark:text-gray-300">
-              Enter the email address you’d like associated with your order.
+              Enter your email and delivery address to continue your order.
             </p>
             <label
               htmlFor="order-email"
@@ -96,6 +98,23 @@ const Popup = ({ isOpen, onClose }) => {
               autoFocus
               required
               className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/25 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+            />
+            <label
+              htmlFor="order-address"
+              className="mb-2 mt-4 block text-sm font-medium"
+            >
+              Delivery address
+            </label>
+            <textarea
+              id="order-address"
+              name="address"
+              value={address}
+              onChange={(event) => setAddress(event.target.value)}
+              placeholder="Street, city, region, postal code"
+              autoComplete="street-address"
+              rows={3}
+              required
+              className="w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/25 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
             />
             <button
               type="submit"
